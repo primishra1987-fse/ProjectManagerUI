@@ -41,7 +41,7 @@
         </div>
         <div class="row column-text-align column-bg-color">
           <br>
-          <p class="text-center">{{task.task}}</p>
+          <p class="text-center">{{task.taskName}}</p>
           <br>
         </div>
       </div>
@@ -52,7 +52,7 @@
         <div class="row column-text-align column-bg-color">
           <br>
           <p class="text-center">
-            {{(task.parent && task.parent.task)?task.parent.task:'No Parent task'}}
+            {{(task.parent && task.parent.parentTask)?task.parent.parentTask:'No Parent task'}}
           </p>
           <br>
         </div>
@@ -93,7 +93,7 @@
         </div>
         <div class="row column-text-align">
           <br>
-          <button class="btn btn-primary btn-sm col-md-12" routerLink="/update/{{task.id}}">{{(task.endDate
+          <button class="btn btn-primary btn-sm col-md-12" routerLink="/update/{{task.taskId}}">{{(task.endDate
                               <=todayDate && task.endDate !='')? 'View': 'Edit'}}</button>
         </div>
       </div>
@@ -129,9 +129,9 @@
               </div>
             </form>
           </div>
-          <div *ngIf="project.name">
+          <div *ngIf="project.projectName">
             <p class="text-center">
-              <strong>Selected Project Name:</strong> {{project.name}}</p>
+              <strong>Selected Project Name:</strong> {{project.projectName}}</p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-primary" (click)="add()" data-dismiss="modal">Add</button>

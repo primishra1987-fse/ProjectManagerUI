@@ -119,9 +119,13 @@ export class AddTaskComponent implements OnInit {
     this.modalMessage = 'Please select anyone of the task below as Parent Task';
   }
   openProjectModel() {
+    console.log("Service call for Project Search");
     this.projectService.getProjects().subscribe(
       resp => this.projects = resp
+      
+      
     );
+    
     this.modalType = 'projectModal';
     this.display = 'block';
     this.modalTitle = 'Project Selection';
@@ -156,6 +160,7 @@ export class AddTaskComponent implements OnInit {
     }
     if (this.modalType === 'projectModal') {
       this.task.project = this.project;
+      console.log("Display Project ID:"+this.task.project.projectId);
     }
     this.display = "none";
   }

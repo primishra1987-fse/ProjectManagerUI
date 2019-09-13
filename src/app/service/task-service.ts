@@ -1,24 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import {Task} from '../model/task';
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
 
-  private baseURI: String = "http://localhost:8081/taskservice/";
+  private baseURI: String = "http://localhost:8096/task/";
   constructor(private http: HttpClient) { }
 
   getTasks(): any {
-    return this.http.get(this.baseURI + 'tasks');
+    return this.http.get(this.baseURI + 'getAllTasks');
   }
 
   getAllParent(): any {
-    return this.http.get(this.baseURI + 'parent');
+    return this.http.get(this.baseURI + 'getAllParent');
   }
 
-  getTaskById(id): any {
-    return this.http.get(this.baseURI + 'task/' + id);
+  getTaskById(taskId): any {
+        return this.http.get(this.baseURI + 'getTask/' + taskId);
   }
 
   addTask(task): any {
@@ -30,6 +30,7 @@ export class TaskService {
         'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
       })
     };
+    console.log("Display Project ID:"+task.project.projectId);
     return this.http.post(this.baseURI + 'add', task, httpOptions);
   }
 
@@ -42,10 +43,11 @@ export class TaskService {
         'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
       })
     };
-    return this.http.post(this.baseURI + 'add/parent', task, httpOptions);
+    console.log("Parent task-- " +task.taskName);
+    return this.http.post(this.baseURI + 'addParent', task, httpOptions);
   }
 
-  endTask(id): any {
+  endTask(taskId): any {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -54,10 +56,11 @@ export class TaskService {
         'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
       })
     };
-    return this.http.put(this.baseURI + 'endtask/' + id, httpOptions);
+    return this.http.put(this.baseURI + 'suspend/' + taskId, httpOptions);
   }
 
-  updateTask(task): any {
+  updateTask(task:Task): any {
+    console.log(" edit task service " +task.taskId);
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -66,6 +69,6 @@ export class TaskService {
         'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
       })
     };
-    return this.http.put(this.baseURI + 'update/', task, httpOptions);
+    return this.http.put(this.baseURI + 'update/'+task.taskId ,task, httpOptions);
   }
 }

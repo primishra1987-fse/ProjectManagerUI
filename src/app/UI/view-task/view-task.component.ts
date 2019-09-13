@@ -28,7 +28,7 @@ export class ViewTaskComponent implements OnInit {
   }
 
   endTask(task) {
-    this.taskService.endTask(task.id).subscribe(
+    this.taskService.endTask(task.taskId).subscribe(
       resp => this.taskService.getTasks().subscribe(resp => this.tasks = resp)
     );
   }

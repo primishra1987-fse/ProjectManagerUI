@@ -28,7 +28,7 @@
       <div class="form-group">
         <div class="row">
           <label for="projectname" class="col-md-2">Project:</label>
-          <input type="text" class="col-md-4 form-control" disabled id="projectname" name="projectname" [(ngModel)]="task.project.name"
+          <input type="text" class="col-md-4 form-control" disabled id="projectname" name="projectname" [(ngModel)]="task.project.projectName"
             style="background-color:#d3d3d3">&nbsp;
             <button type="button" class="col-md-1" (click)="openProjectModel()" value="search">Search</button>
         </div>
@@ -40,7 +40,7 @@
       <div class="form-group">
         <div class="row">
           <label for="task" class="col-md-2">Task:</label>
-          <input type="text" class="col-md-5 form-control" id="task" name="task" [(ngModel)]="task.task" style="background-color:#d3d3d3">
+          <input type="text" class="col-md-5 form-control" id="task" name="task" [(ngModel)]="task.taskName" style="background-color:#d3d3d3">
         </div>
         <div *ngIf="taskNameError" class="row">
           <div class="col-md-2"></div>
@@ -74,7 +74,7 @@
         <div class="form-group">
           <div class="row">
             <label for="ptask" class="col-md-2">Parent Task:</label>
-            <input type="text" disabled class="col-md-4  form-control" id="ptask" name="ptask" [(ngModel)]="task.parent.task" style="background-color:#d3d3d3">&nbsp;
+            <input type="text" disabled class="col-md-4  form-control" id="ptask" name="ptask" [(ngModel)]="task.parent.parentTask" style="background-color:#d3d3d3">&nbsp;
             <button type="button" class="col-md-1" (click)="openParentModel()" value="search">Search</button>
           </div>
         </div>
@@ -134,12 +134,13 @@
               </div>
               <div *ngIf="modalType==='parentModal'" class="list-group">
                 <li class="list-group-item" *ngFor="let parent of allParent | filterparent:searchItem">
-                  <a href="#" (click)="selectedParent(parent, $event)">{{parent.task}}</a>
+                  <a href="#" (click)="selectedParent(parent, $event)">{{parent.parentTask}}</a>
                 </li>
               </div>
               <div *ngIf="modalType==='projectModal'" class="list-group">
+                 
                 <li class="list-group-item" *ngFor="let project of projects | filterProject:searchItem">
-                  <a href="#" (click)="selectedProject(project, $event)">{{project.name}}</a>
+                    <a href="#" (click)="selectedProject(project, $event)">{{project.projectName}}</a>
                 </li>
               </div>
             </form>
@@ -148,13 +149,13 @@
             <p class="text-center">
               <strong>Selected User for Manager:</strong> {{user.firstName}} {{user.lastName}}</p>
           </div>
-          <div *ngIf="parent.task && modalType==='parentModal'">
+          <div *ngIf="parent.parentTask && modalType==='parentModal'">
             <p class="text-center">
-              <strong>Selected Parent Task:</strong> {{parent.task}}</p>
+              <strong>Selected Parent Task:</strong> {{parent.parentTask}}</p>
           </div>
-          <div *ngIf="project.name && modalType==='projectModal'">
+          <div *ngIf="project.projectName && modalType==='projectModal'">
             <p class="text-center">
-              <strong>Selected Project:</strong> {{project.name}}</p>
+              <strong>Selected Project:</strong> {{project.projectName}}</p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-primary" (click)="add()" data-dismiss="modal">Add</button>

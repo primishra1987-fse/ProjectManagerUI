@@ -1,4 +1,5 @@
 import { User } from './user';
+import {Task} from './task';
 export class Project {
     
     projectId: number;
@@ -8,4 +9,5 @@ export class Project {
     endDate: string;
     status: string;
     user: User = new User();
+    noOfTask: number;
 }

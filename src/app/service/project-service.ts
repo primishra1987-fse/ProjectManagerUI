@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Project } from '../model/project';
+import {map} from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,8 @@ export class ProjectService {
   constructor(private http: HttpClient) { }
 
   getProjects(): any {
-    return this.http.get(this.baseURI + 'allProjects');
+    console.log("Service call to - "+ this.baseURI);
+    return this.http.get<Project[]>(this.baseURI + 'allProjects').pipe(map(x=>x));
   }
 
   deleteProject(projectId : number): any {

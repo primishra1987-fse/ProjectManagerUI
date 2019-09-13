@@ -11,4 +11,5 @@ export class Task {
     project: Project = new Project();
     user: User = new User();
     status: string;
+    
 }

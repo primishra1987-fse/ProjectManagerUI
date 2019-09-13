@@ -35,13 +35,14 @@ export class ProjectComponent implements OnInit {
   }
 
   getAllProjects() {
+    
     this.projectService.getProjects().subscribe(
       resp => this.projects = resp
     );
   }
 
   save(event) {
-    console.log(this.project);
+    console.log(this.project.noOfTask);
     this.nameError = this.dateError = this.managerError = this.failureMessage = this.successMessage = '';
     event.preventDefault();
     if (this.validate()) {
