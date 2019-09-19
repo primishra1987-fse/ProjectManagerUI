@@ -40,11 +40,11 @@ export class ProjectComponent implements OnInit {
       resp => this.projects = resp
       
     );
-    console.log("Project List:"+this.project);
+    
   }
 
   save(event) {
-    console.log(this.project.noOfTask);
+    
     this.nameError = this.dateError = this.managerError = this.failureMessage = this.successMessage = '';
     event.preventDefault();
     if (this.validate()) {
@@ -142,27 +142,27 @@ export class ProjectComponent implements OnInit {
   addUser() {
     this.project.user = this.user;
     this.display = "none";
-    console.log(this.project);
+    
   }
 
   sortByPriority() {
     this.projects = this.projects.sort((a, b) => (a.priority > b.priority ? 1 : -1));
-    console.log(this.projects);
+    
   }
 
   sortByStartDate() {
     this.projects = this.projects.sort((a, b) => (a.startDate > b.startDate ? 1 : -1));
-    console.log(this.projects);
+    
   }
 
   sortByEndDate() {
     this.projects = this.projects.sort((a, b) => (a.endDate > b.endDate ? 1 : -1));
-    console.log(this.projects);
+    
   }
 
   sortByStatus() {
     this.projects = this.projects.sort((a, b) => (a.status > b.status ? 1 : -1));
-    console.log(this.projects);
+    
   }
 
 }

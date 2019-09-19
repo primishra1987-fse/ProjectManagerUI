@@ -76,12 +76,12 @@ export class ViewTaskComponent implements OnInit {
 
   sortByPriority() {
     this.tasks = this.tasks.sort((a, b) => a.priority - b.priority);
-    console.log(this.tasks);
+    
   }
 
   sortByStartDate() {
     this.tasks = this.tasks.sort((a, b) => (a.startDate > b.startDate ? 1 : -1));
-    console.log(this.tasks);
+    
   }
 
   sortByEndDate() {

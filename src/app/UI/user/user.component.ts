@@ -33,7 +33,7 @@ export class UserComponent implements OnInit {
     );
   }
   save(event) {
-    console.log(this.user);
+    
     this.fnameError = this.lnameError = this.empIdError = this.failureMessage = this.successMessage = '';
     event.preventDefault();
     if (this.validate()) {
@@ -92,7 +92,7 @@ export class UserComponent implements OnInit {
   delete(user: User):void {
    
     this.fnameError = this.lnameError = this.empIdError = this.failureMessage = this.successMessage = '';
-   console.log("User Id " + user.userId);
+   
     this.userService.deleteUser(user.userId).subscribe(
       resp => {
         this.getAllUsers();

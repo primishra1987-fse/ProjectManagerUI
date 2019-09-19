@@ -39,7 +39,7 @@ export class EditTaskComponent implements OnInit {
     
     this.taskService.getTaskById(this.taskId).subscribe(resp => {
       this.task = resp;
-      console.log(this.task);
+      
       
       if (this.task.taskName) {
         this.viewOnly = (this.task.endDate <= this.todayDate);

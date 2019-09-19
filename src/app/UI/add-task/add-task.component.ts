@@ -120,7 +120,7 @@ export class AddTaskComponent implements OnInit {
     this.modalMessage = 'Please select anyone of the task below as Parent Task';
   }
   openProjectModel() {
-    console.log("Service call for Project Search");
+    
     this.projectService.getProjects().subscribe(
       resp => this.projects = resp
       
