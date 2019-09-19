@@ -38,7 +38,7 @@
         <div class="form-group">
           <div class="row">
             <label for="ptask" class="col-md-2">Parent Task:</label>
-            <input type="text" class="col-md-3 form-control" id="ptask" disabled name="ptask" [(ngModel)]="parent.parentTask" style="background-color:#d3d3d3">&nbsp;&nbsp;
+            <input type="text" class="col-md-3 form-control" id="ptask" disabled name="ptask" [(ngModel)]="task.parent.parentTask" style="background-color:#d3d3d3">&nbsp;&nbsp;
             <button *ngIf="!viewOnly" type="button" class="col-md-1" (click)="openParentModel()" value="search">Search</button>
           </div>
         </div>

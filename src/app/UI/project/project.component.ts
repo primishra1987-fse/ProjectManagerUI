@@ -38,7 +38,9 @@ export class ProjectComponent implements OnInit {
     
     this.projectService.getProjects().subscribe(
       resp => this.projects = resp
+      
     );
+    console.log("Project List:"+this.project);
   }
 
   save(event) {

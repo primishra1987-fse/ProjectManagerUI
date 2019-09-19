@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Task} from '../model/task';
+import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -10,7 +11,14 @@ export class TaskService {
   constructor(private http: HttpClient) { }
 
   getTasks(): any {
-    return this.http.get(this.baseURI + 'getAllTasks');
+   
+    console.log("Payload = " + this.http.get(this.baseURI + 'getAllTasks',{ observe: 'response' })
+    .subscribe(
+     response => console.log(response.body)
+   ));
+    return this.http.get<Task[]>(this.baseURI + 'getAllTasks').pipe(map(x=>x));
+    
+    
   }
 
   getAllParent(): any {
@@ -18,6 +26,10 @@ export class TaskService {
   }
 
   getTaskById(taskId): any {
+    console.log("getTask By Id = " + this.http.get(this.baseURI + 'getTask'+ taskId,{ observe: 'response' })
+    .subscribe(
+     response => console.log(response.body)
+   ));
         return this.http.get(this.baseURI + 'getTask/' + taskId);
   }
 
@@ -43,7 +55,7 @@ export class TaskService {
         'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
       })
     };
-    console.log("Parent task-- " +task.taskName);
+    
     return this.http.post(this.baseURI + 'addParent', task, httpOptions);
   }
 

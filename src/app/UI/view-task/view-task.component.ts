@@ -11,8 +11,9 @@ import { Task } from '../../model/task';
   styleUrls: ['./view-task.component.css']
 })
 export class ViewTaskComponent implements OnInit {
+  private successMessage: string = '';
   private todayDate: any = new Date();
-  private tasks: Task[];
+  private tasks: Task[] = [];
   private project: Project = new Project();
   private display: string = 'none';
   private searchItem: string;
@@ -24,20 +25,34 @@ export class ViewTaskComponent implements OnInit {
 
   ngOnInit() {
     this.todayDate = this.datePipe.transform(this.todayDate, 'yyyy-MM-dd');
-    this.taskService.getTasks().subscribe(resp => this.tasks = resp);
+    this.getAllTasks();
+    
   }
 
   endTask(task) {
     this.taskService.endTask(task.taskId).subscribe(
-      resp => this.taskService.getTasks().subscribe(resp => this.tasks = resp)
-    );
+     // resp => this.tasks = resp;
+      resp => this.successMessage = 'Parent Task added successfully!');
+    this.getAllTasks();
   }
+
+  getAllTasks() {
+    
+    this.taskService.getTasks().subscribe(
+      resp => this.tasks = resp
+     
+    );
+    
+
+  }
+
 
   getAllProjects() {
     this.projectService.getProjects().subscribe(
       resp => this.projects = resp
     );
   }
+  
 
   openProjectModel() {
     this.getAllProjects();

@@ -50,7 +50,7 @@ export class EditTaskComponent implements OnInit {
       if (!this.task.parent) {
         this.task.parent = new Parent();
       }
-      console.log("Task ID:"+this.task.project.projectId);
+      
     });
   }
 
@@ -61,7 +61,6 @@ export class EditTaskComponent implements OnInit {
       this.task.parent = null;
     }
     if (this.validate()) {
-      console.log("Update task with id -- " +this.task.taskId);
       this.taskService.updateTask(this.task).subscribe(
         resp => this.successMessage = 'Task updated successfully!',
         error => this.failureMessage = 'Update failed. Try again later');

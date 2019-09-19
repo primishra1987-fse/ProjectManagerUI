@@ -86,6 +86,7 @@ export class AddTaskComponent implements OnInit {
           resp => this.successMessage = 'Parent Task added successfully!',
           error => this.failureMessage = 'Add Parent task failed. Try again later');
       }else{
+        
         this.taskService.addTask(this.task).subscribe(
           resp => this.successMessage = 'Task added successfully!',
           error => this.failureMessage = 'Add task failed. Try again later');
@@ -160,7 +161,7 @@ export class AddTaskComponent implements OnInit {
     }
     if (this.modalType === 'projectModal') {
       this.task.project = this.project;
-      console.log("Display Project ID:"+this.task.project.projectId);
+      
     }
     this.display = "none";
   }
